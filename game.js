@@ -32,11 +32,34 @@ class Player {
         context.fillRect(w*.03,this.y-(h*.06),w*.01, paddleWidth)
     }
 }
+class Ball{
+    constructor(x,y) {
+        this.x = x
+        this.y = y
+        this.dx = 1
+        this.dy = 3
+
+    }
+    draw = () => {
+        context.beginPath()
+      
+        context.fillRect(this.x-(w*.015/2), this.y-(w*.015/2), w*.015, w*.015)
+      
+    }
+    update = () => {
+        this.x += this.dx
+        this.y += this.dy
+    }
+
+}
 const player = new Player(h/2)
+const ball = new Ball(w/2,h/2)
 
 
-function animate() {
-
+ animate =()=> {
+    context.clearRect(0,0,w,h)
+    ball.draw()
+    ball.update()
     player.draw()
     board()
     requestAnimationFrame(animate)
